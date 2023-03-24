@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_month_picker/views/custom_month_picker.dart';
 import 'package:flutter_custom_month_picker/flutter_custom_month_picker.dart';
 
 void main() {

@@ -48,7 +48,7 @@ class _MonthYearController extends GetxController{
   @override
   void onInit() {
     super.onInit();
-    yearList=List.generate((initialYear!-firstYear!)+1, (index) => (initialYear!-index).toString());
+    _generateYearList();
     selectedMonth({
       "name":monthsName[initialMonth!-1],
       "index":initialMonth!-1
@@ -58,14 +58,22 @@ class _MonthYearController extends GetxController{
 
   void setYear(year){
     selectedYear(int.parse(year));
-    selected=DateTime(selectedYear.value,selectedMonth.value["index"]+1,1);
+    _assignDate();
   }
   void setMonth(month){
     selectedMonth({
       "name":month,
       "index":monthsName.indexWhere((element) => element==month)
     });
+    _assignDate();
+  }
+
+  void _assignDate(){
     selected=DateTime(selectedYear.value,selectedMonth.value["index"]+1,1);
+  }
+
+  void _generateYearList(){
+    yearList=List.generate((selectedYear.value-firstYear!)+1, (index) => (selectedYear.value-index).toString());
   }
 
 }
