@@ -10,20 +10,21 @@ To use this package, add flutter_custom_month_picker as a dependency in your pub
 
 ```dart
 void showMonthPicker(context, onSelected: (month, year) {
-if (kDebugMode) {
-print('Selected month: $month, year: $year');
-}
-},
-initialSelectedMonth: 3,
-initialSelectedYear: 2021,
-firstYear: 2000,
-lastYear: 2025,
-selectButtonText: 'OK',
-cancelButtonText: 'Cancel',
-highlightColor: Colors.purple,
-textColor: Colors.black,
-contentBackgroundColor: Colors.white,
-dialogBackgroundColor: Colors.grey[200]);
+      if (kDebugMode) {
+        print('Selected month: $month, year: $year');
+      }
+    },
+    initialSelectedMonth: 3,
+    initialSelectedYear: 2021,
+    firstYear: 2000,
+    lastYear: 2025,
+    selectButtonText: 'OK',
+    cancelButtonText: 'Cancel',
+    highlightColor: Colors.purple,
+    textColor: Colors.black,
+    contentBackgroundColor: Colors.white,
+    dialogBackgroundColor: Colors.grey[200]
+);
 ```
 
 ## Arguments
@@ -46,8 +47,8 @@ dialogBackgroundColor: Colors.grey[200]);
 
 ## Screenshots
 
-![Screenshot 1](https://ibb.co/h90xW67)
-![Screenshot 2](https://ibb.co/QMS3WwD)
+![Screenshot 1](https://imgur.com/uB4tOZB)
+![Screenshot 2](https://imgur.com/kpEl980)
 
 
 ## Contributing
