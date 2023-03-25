@@ -29,6 +29,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  int month = 3, year = 2023;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,25 +39,36 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('Flutter Month Picker Demo'),
       ),
       body: Center(
-          child: ElevatedButton(
-              onPressed: () {
-                showMonthPicker(context, onSelected: (month, year) {
-                  if (kDebugMode) {
-                    print('Selected month: $month, year: $year');
-                  }
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  showMonthPicker(context, onSelected: (month, year) {
+                    if (kDebugMode) {
+                      print('Selected month: $month, year: $year');
+                    }
+                    setState(() {
+                      this.month = month;
+                      this.year = year;
+                    });
+                  },
+                      initialSelectedMonth: month,
+                      initialSelectedYear: year,
+                      firstYear: 2000,
+                      lastYear: 2025,
+                      selectButtonText: 'OK',
+                      cancelButtonText: 'Cancel',
+                      highlightColor: Colors.purple,
+                      textColor: Colors.black,
+                      contentBackgroundColor: Colors.white,
+                      dialogBackgroundColor: Colors.grey[200]);
                 },
-                    initialSelectedMonth: 3,
-                    initialSelectedYear: 2021,
-                    firstYear: 2000,
-                    lastYear: 2025,
-                    selectButtonText: 'OK',
-                    cancelButtonText: 'Cancel',
-                    highlightColor: Colors.purple,
-                    textColor: Colors.black,
-                    contentBackgroundColor: Colors.white,
-                    dialogBackgroundColor: Colors.grey[200]);
-              },
-              child: const Text('Show Month Picker'))),
+                child: const Text('Show Month Picker')),
+            Text('Selected month: $month, year: $year')
+          ],
+        ),
+      ),
     );
   }
 }
