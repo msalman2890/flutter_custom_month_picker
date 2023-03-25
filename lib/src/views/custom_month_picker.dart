@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'dart:developer';
 part 'month_picker.dart';
 part 'year_picker.dart';
 part '../controller/month_year_controller.dart';
@@ -18,6 +18,18 @@ void showMonthPicker(context,
       Color? contentBackgroundColor = Colors.white,
       Color? dialogBackgroundColor,
       Color? textColor}) {
+
+  try {
+    assert(firstYear! <= lastYear!);
+    assert(initialSelectedYear! >= firstYear!);
+    assert(initialSelectedYear! <= lastYear!);
+    assert(initialSelectedMonth! >= 1);
+    assert(initialSelectedMonth! <= 12);
+  } catch (e) {
+    log(e.toString(), name: "flutter_custom_month_picker");
+    return;
+  }
+
   showDialog(
       context: context,
       builder: (BuildContext ctx) {
@@ -174,7 +186,7 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
               if (controller.yearSelectionStarted.value) {
                 controller.yearSelectionStarted(false);
               } else {
-                Get.back();
+                pop();
               }
             },
             child: Text(widget.cancelButtonText!,
@@ -184,7 +196,7 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
           onPressed: () {
             widget.onSelected(
                 controller.selected.month, controller.selected.year);
-            Get.back();
+            pop();
           },
           style: ElevatedButton.styleFrom(
             fixedSize: const Size(100, 40),
@@ -199,5 +211,10 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
         const SizedBox(width: 15),
       ],
     );
+  }
+
+  void pop() {
+    Navigator.pop(context);
+    Get.delete<_MonthYearController>();
   }
 }
