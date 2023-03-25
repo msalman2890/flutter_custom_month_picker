@@ -2,8 +2,7 @@ part of 'custom_month_picker.dart';
 
 class _YearPicker extends StatefulWidget {
   const _YearPicker(
-      {required this.highlightColor,
-      this.backgroundColor = Colors.white});
+      {required this.highlightColor, this.backgroundColor = Colors.white});
 
   final Color highlightColor;
   final Color backgroundColor;
