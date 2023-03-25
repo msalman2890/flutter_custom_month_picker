@@ -5,3 +5,7 @@
 ## 0.0.2
 
 * Format the code
+
+## 0.0.3
+
+* Improved documentation
