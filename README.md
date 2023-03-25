@@ -47,9 +47,9 @@ void showMonthPicker(context, onSelected: (month, year) {
 
 ## Screenshots
 
-<img src="https://github.com/msalman2890/flutter_custom_month_picker/blob/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20Max%20-%202023-03-24%20at%2012.23.51.png" width="250" height="250">
+<img src="https://raw.githubusercontent.com/msalman2890/flutter_custom_month_picker/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20Max%20-%202023-03-24%20at%2012.23.51.png" width="250" height="250">
 
-<img src="https://github.com/msalman2890/flutter_custom_month_picker/blob/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20Max%20-%202023-03-24%20at%2012.24.01.png" width="250" height="250">
+<img src="https://raw.githubusercontent.com/msalman2890/flutter_custom_month_picker/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20Max%20-%202023-03-24%20at%2012.24.01.png" width="250" height="250">
 
 
 ## Contributing
