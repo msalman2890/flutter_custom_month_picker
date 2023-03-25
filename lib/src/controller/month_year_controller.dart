@@ -66,8 +66,7 @@ class _MonthYearController extends GetxController {
   }
 
   void _assignDate() {
-    selected =
-        DateTime(selectedYear.value, selectedMonth.value, 1);
+    selected = DateTime(selectedYear.value, selectedMonth.value, 1);
   }
 
   void _generateYearList() {

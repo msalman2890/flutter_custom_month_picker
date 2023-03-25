@@ -5,20 +5,18 @@ part 'month_picker.dart';
 part 'year_picker.dart';
 part '../controller/month_year_controller.dart';
 
-
 void showMonthPicker(context,
     {required Function(int, int) onSelected,
-      int? firstYear,
-      int? initialSelectedMonth,
-      int? initialSelectedYear,
-      int? lastYear,
-      String selectButtonText = "OK",
-      String cancelButtonText = "Cancel",
-      Color highlightColor = Colors.green,
-      Color? contentBackgroundColor = Colors.white,
-      Color? dialogBackgroundColor,
-      Color? textColor}) {
-
+    int? firstYear,
+    int? initialSelectedMonth,
+    int? initialSelectedYear,
+    int? lastYear,
+    String selectButtonText = "OK",
+    String cancelButtonText = "Cancel",
+    Color highlightColor = Colors.green,
+    Color? contentBackgroundColor = Colors.white,
+    Color? dialogBackgroundColor,
+    Color? textColor}) {
   try {
     assert(firstYear! <= lastYear!);
     assert(initialSelectedYear! >= firstYear!);
@@ -47,7 +45,6 @@ void showMonthPicker(context,
             textColor: textColor);
       });
 }
-
 
 class _CustomMonthPicker extends StatefulWidget {
   const _CustomMonthPicker({
@@ -142,8 +139,8 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
       child: ElevatedButton(
         onPressed: () {
           controller.monthSelectionStarted(false);
-          controller.yearSelectionStarted(
-              !controller.yearSelectionStarted.value);
+          controller
+              .yearSelectionStarted(!controller.yearSelectionStarted.value);
         },
         style: ElevatedButton.styleFrom(
           elevation: 0,
@@ -177,7 +174,7 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
     );
   }
 
-  Widget dialogFooter(){
+  Widget dialogFooter() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [

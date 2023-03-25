@@ -1,7 +1,8 @@
 part of 'custom_month_picker.dart';
 
 class _MonthPicker extends StatefulWidget {
-  const _MonthPicker({required this.highlightColor, this.backgroundColor = Colors.white});
+  const _MonthPicker(
+      {required this.highlightColor, this.backgroundColor = Colors.white});
 
   final Color highlightColor;
   final Color backgroundColor;
@@ -33,7 +34,7 @@ class _MonthPickerState extends State<_MonthPicker> {
             controller.monthsName.length,
             (index) => GestureDetector(
                   onTap: () {
-                    controller.setMonth(index+1);
+                    controller.setMonth(index + 1);
                     controller.monthSelectionStarted(false);
                   },
                   child: Obx(

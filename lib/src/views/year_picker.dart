@@ -1,7 +1,9 @@
 part of 'custom_month_picker.dart';
 
 class _YearPicker extends StatefulWidget {
-  const _YearPicker({super.key, required this.highlightColor, this.backgroundColor = Colors.white});
+  const _YearPicker(
+      {required this.highlightColor,
+      this.backgroundColor = Colors.white});
 
   final Color highlightColor;
   final Color backgroundColor;
@@ -34,31 +36,31 @@ class _YearPickerState extends State<_YearPicker> {
           childAspectRatio: 1.8,
           children: List.generate(
               controller.yearList.length,
-                  (index) => GestureDetector(
-                onTap: (){
-                  controller.setYear(int.parse(controller.yearList[index]));
-                  controller.yearSelectionStarted(false);
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: controller.selectedYear.value ==
-                          int.parse(controller.yearList[index])
-                          ? widget.highlightColor
-                          : Colors.transparent),
-                  child: Center(
-                    child: Text(
-                      controller.yearList[index],
-                      style: TextStyle(
-                        color: controller.selectedYear.value ==
-                            int.parse(controller.yearList[index])
-                            ? Colors.white
-                            : Colors.black,
+              (index) => GestureDetector(
+                    onTap: () {
+                      controller.setYear(int.parse(controller.yearList[index]));
+                      controller.yearSelectionStarted(false);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: controller.selectedYear.value ==
+                                  int.parse(controller.yearList[index])
+                              ? widget.highlightColor
+                              : Colors.transparent),
+                      child: Center(
+                        child: Text(
+                          controller.yearList[index],
+                          style: TextStyle(
+                            color: controller.selectedYear.value ==
+                                    int.parse(controller.yearList[index])
+                                ? Colors.white
+                                : Colors.black,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              )),
+                  )),
         ),
       ),
     );
