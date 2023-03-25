@@ -1,12 +1,14 @@
 part of '../views/custom_month_picker.dart';
 
-class _MonthYearController extends GetxController{
-  _MonthYearController({this.firstYear, this.lastYear, this.initialMonth, this.initialYear});
+class _MonthYearController extends GetxController {
+  _MonthYearController(
+      {this.firstYear, this.lastYear, this.initialMonth, this.initialYear});
 
-  static _MonthYearController of({int? firstYear, int? lastYear, int? initialMonth, int? initialYear}) {
-    try{
-    return Get.find();
-    }catch(e){
+  static _MonthYearController of(
+      {int? firstYear, int? lastYear, int? initialMonth, int? initialYear}) {
+    try {
+      return Get.find();
+    } catch (e) {
       return Get.put(_MonthYearController(
         firstYear: firstYear ?? 1900,
         lastYear: lastYear ?? DateTime.now().year,
@@ -21,16 +23,16 @@ class _MonthYearController extends GetxController{
   final int? initialMonth;
   final int? initialYear;
 
-  RxMap selectedMonth = {}.obs;
+  RxInt selectedMonth = 1.obs;
   RxInt selectedYear = 32.obs;
 
-  DateTime selected=DateTime.now();
-  RxBool monthSelectionStarted=false.obs;
-  RxBool yearSelectionStarted=false.obs;
+  DateTime selected = DateTime.now();
+  RxBool monthSelectionStarted = false.obs;
+  RxBool yearSelectionStarted = false.obs;
 
-  List<String> yearList=[];
+  List<String> yearList = [];
 
-  List<String> monthsName=[
+  List<String> monthsName = [
     "Jan",
     "Feb",
     "Mar",
@@ -49,31 +51,29 @@ class _MonthYearController extends GetxController{
   void onInit() {
     super.onInit();
     _generateYearList();
-    selectedMonth({
-      "name":monthsName[initialMonth!-1],
-      "index":initialMonth!-1
-    });
-    selectedYear(initialYear!);
+    setMonth(initialMonth!);
+    setYear(initialYear!);
   }
 
-  void setYear(year){
-    selectedYear(int.parse(year));
-    _assignDate();
-  }
-  void setMonth(month){
-    selectedMonth({
-      "name":month,
-      "index":monthsName.indexWhere((element) => element==month)
-    });
+  void setYear(int year) {
+    selectedYear(int.parse(year.toString()));
     _assignDate();
   }
 
-  void _assignDate(){
-    selected=DateTime(selectedYear.value,selectedMonth.value["index"]+1,1);
+  void setMonth(int month) {
+    selectedMonth(month);
+    _assignDate();
   }
 
-  void _generateYearList(){
-    yearList=List.generate((selectedYear.value-firstYear!)+1, (index) => (selectedYear.value-index).toString());
+  void _assignDate() {
+    selected =
+        DateTime(selectedYear.value, selectedMonth.value, 1);
   }
 
+  void _generateYearList() {
+    selectedMonth(selected.month);
+    setYear(selected.year);
+    yearList = List.generate((selectedYear.value - firstYear!) + 1,
+        (index) => (selectedYear.value - index).toString());
+  }
 }

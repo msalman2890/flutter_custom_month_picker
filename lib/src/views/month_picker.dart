@@ -33,7 +33,7 @@ class _MonthPickerState extends State<_MonthPicker> {
             controller.monthsName.length,
             (index) => GestureDetector(
                   onTap: () {
-                    controller.setMonth(controller.monthsName[index]);
+                    controller.setMonth(index+1);
                     controller.monthSelectionStarted(false);
                   },
                   child: Obx(
@@ -41,16 +41,14 @@ class _MonthPickerState extends State<_MonthPicker> {
                       margin: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          color: controller.selectedMonth.value["name"] ==
-                                  controller.monthsName[index]
+                          color: controller.selectedMonth.value - 1 == index
                               ? widget.highlightColor
                               : Colors.transparent),
                       child: Center(
                         child: Text(
                           controller.monthsName[index],
                           style: TextStyle(
-                              color: controller.selectedMonth.value["name"] ==
-                                      controller.monthsName[index]
+                              color: controller.selectedMonth.value - 1 == index
                                   ? Colors.white
                                   : const Color(0xff474747),
                               fontSize: 14,

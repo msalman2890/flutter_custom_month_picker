@@ -36,7 +36,7 @@ class _YearPickerState extends State<_YearPicker> {
               controller.yearList.length,
                   (index) => GestureDetector(
                 onTap: (){
-                  controller.setYear(controller.yearList[index]);
+                  controller.setYear(int.parse(controller.yearList[index]));
                   controller.yearSelectionStarted(false);
                 },
                 child: Container(
