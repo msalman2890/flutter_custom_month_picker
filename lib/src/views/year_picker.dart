@@ -17,6 +17,7 @@ class _YearPickerState extends State<_YearPicker> {
   @override
   void initState() {
     super.initState();
+    // get the controller from the parent
     controller = _MonthYearController.of();
   }
 
@@ -37,6 +38,7 @@ class _YearPickerState extends State<_YearPicker> {
               controller.yearList.length,
               (index) => GestureDetector(
                     onTap: () {
+                      // set the selected year and close the year selection
                       controller.setYear(int.parse(controller.yearList[index]));
                       controller.yearSelectionStarted(false);
                     },

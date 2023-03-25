@@ -4,11 +4,14 @@ class _MonthYearController extends GetxController {
   _MonthYearController(
       {this.firstYear, this.lastYear, this.initialMonth, this.initialYear});
 
+  /// static method to get the controller instance from anywhere
   static _MonthYearController of(
       {int? firstYear, int? lastYear, int? initialMonth, int? initialYear}) {
     try {
+      // if the controller is already created, return it
       return Get.find();
     } catch (e) {
+      // if not, create a new instance and return it
       return Get.put(_MonthYearController(
         firstYear: firstYear ?? 1900,
         lastYear: lastYear ?? DateTime.now().year,
@@ -18,20 +21,35 @@ class _MonthYearController extends GetxController {
     }
   }
 
+  /// the first year to be shown in the year picker
   final int? firstYear;
+
+  /// the last year to be shown in the year picker
   final int? lastYear;
+
+  /// the initial month to be selected
   final int? initialMonth;
+
+  /// the initial year to be selected
   final int? initialYear;
 
+  /// the selected month
   RxInt selectedMonth = 1.obs;
+
+  /// the selected year
   RxInt selectedYear = 32.obs;
 
+  /// the selected date object (contains the selected month and year)
   DateTime selected = DateTime.now();
+
+  /// this is used to show the month view or the year view in the dialog
   RxBool monthSelectionStarted = false.obs;
   RxBool yearSelectionStarted = false.obs;
 
+  /// the list of years to be shown in the year picker
   List<String> yearList = [];
 
+  /// the list of months to be shown in the month picker
   List<String> monthsName = [
     "Jan",
     "Feb",
@@ -50,25 +68,32 @@ class _MonthYearController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    // generate the list of years to be shown in the year picker
     _generateYearList();
+
+    // set the initial month and year
     setMonth(initialMonth!);
     setYear(initialYear!);
   }
 
+  /// this method is called when the user taps on a year in the year picker
   void setYear(int year) {
     selectedYear(int.parse(year.toString()));
     _assignDate();
   }
 
+  /// this method is called when the user taps on a month in the month picker
   void setMonth(int month) {
     selectedMonth(month);
     _assignDate();
   }
 
+  /// this method is called when the user taps on the month name or year in the month picker
   void _assignDate() {
     selected = DateTime(selectedYear.value, selectedMonth.value, 1);
   }
 
+  /// this method is called once when the controller is initialized to generate the list of years to be shown in the year picker
   void _generateYearList() {
     selectedMonth(selected.month);
     setYear(selected.year);

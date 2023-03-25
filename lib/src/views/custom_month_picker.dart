@@ -5,6 +5,7 @@ part 'month_picker.dart';
 part 'year_picker.dart';
 part '../controller/month_year_controller.dart';
 
+/// public method to access the month picker dialog with the required parameters
 void showMonthPicker(context,
     {required Function(int, int) onSelected,
     int? firstYear,
@@ -17,6 +18,7 @@ void showMonthPicker(context,
     Color? contentBackgroundColor = Colors.white,
     Color? dialogBackgroundColor,
     Color? textColor}) {
+  // check if the parameters are valid
   try {
     assert(firstYear! <= lastYear!);
     assert(initialSelectedYear! >= firstYear!);
@@ -24,10 +26,12 @@ void showMonthPicker(context,
     assert(initialSelectedMonth! >= 1);
     assert(initialSelectedMonth! <= 12);
   } catch (e) {
+    // if not valid, log the error and return
     log(e.toString(), name: "flutter_custom_month_picker");
     return;
   }
 
+  /// show the dialog
   showDialog(
       context: context,
       builder: (BuildContext ctx) {
@@ -84,6 +88,7 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
   @override
   void initState() {
     super.initState();
+    // initialize the controller with the required parameters
     controller = _MonthYearController.of(
       firstYear: widget.firstYear,
       initialMonth: widget.initialSelectedMonth,
@@ -120,6 +125,7 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
     );
   }
 
+  /// return the month picker or year picker based on the view selection
   Widget returnSelectionView() {
     if (controller.yearSelectionStarted.isTrue) {
       return _YearPicker(
@@ -133,6 +139,7 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
     );
   }
 
+  /// return the year selection button
   Widget yearSelectionButton() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -174,6 +181,7 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
     );
   }
 
+  /// return the dialog footer with cancel and ok buttons
   Widget dialogFooter() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
@@ -210,6 +218,7 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
     );
   }
 
+  /// method to close the dialog and delete the controller
   void pop() {
     Navigator.pop(context);
     Get.delete<_MonthYearController>();

@@ -17,6 +17,7 @@ class _MonthPickerState extends State<_MonthPicker> {
   @override
   void initState() {
     super.initState();
+    // get the controller from the parent
     controller = _MonthYearController.of();
   }
 
@@ -34,6 +35,7 @@ class _MonthPickerState extends State<_MonthPicker> {
             controller.monthsName.length,
             (index) => GestureDetector(
                   onTap: () {
+                    // set the selected month
                     controller.setMonth(index + 1);
                     controller.monthSelectionStarted(false);
                   },
