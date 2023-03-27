@@ -51,16 +51,15 @@ void showMonthPicker(context,
     assert(initialSelectedYear >= firstYear);
     assert(initialSelectedYear <= lastYear);
 
-    if(initialSelectedYear == firstYear) {
+    if (initialSelectedYear == firstYear) {
       // check if the initial selected month is greater than the first enabled month
       assert(initialSelectedMonth >= firstEnabledMonth);
     }
 
-    if(initialSelectedYear == lastYear) {
+    if (initialSelectedYear == lastYear) {
       // check if the initial selected month is less than the last enabled month
       assert(initialSelectedMonth <= lastEnabledMonth);
     }
-
   } catch (e) {
     // if not valid, log the error and return
     log(e.toString(), name: "flutter_custom_month_picker");
