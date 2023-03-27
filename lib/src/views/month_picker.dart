@@ -32,8 +32,7 @@ class _MonthPickerState extends State<_MonthPicker> {
         crossAxisCount: 3,
         childAspectRatio: 2,
         children: List.generate(controller.monthsName.length, (index) {
-          bool isDisabled = index + 1 < controller.firstEnabledMonth! ||
-              index + 1 > controller.lastEnabledMonth!;
+          bool isDisabled = controller.isDisabledMonth(index + 1);
           return GestureDetector(
             onTap: () {
               // if the month is disabled, do nothing

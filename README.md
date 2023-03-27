@@ -39,8 +39,8 @@ void showMonthPicker(context, onSelected: (month, year) {
 | initialSelectedYear    | int             | The initial year to select. Defaults to the current year.                                                          |
 | firstYear              | int             | The first year that can be selected. Defaults to 1900.                                                             |
 | lastYear               | int             | The last year that can be selected. Defaults to the current year.                                                  |
-| firstEnabledMonth      | int             | The first month that can be selected. Defaults to 1.                                                               |
-| lastEnabledMonth       | int             | The last month that can be selected. Defaults to the 12.                                                           |
+| firstEnabledMonth      | int             | The first month of the first year that can be selected. Defaults to 1.                                             |
+| lastEnabledMonth       | int             | The last month of the last year that can be selected. Defaults to the 12.                                          |
 | selectButtonText       | String          | The button text can be changed. Defaults to 'OK'.                                                                  |
 | cancelButtonText       | String          | The button text can be changed. Defaults to 'Cancel'.                                                              |
 | highlightColor         | Color           | The highlight color for the selected month and year. It will also reflected to the 'OK' button. Defaults to green. |

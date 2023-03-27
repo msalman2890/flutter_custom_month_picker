@@ -87,6 +87,10 @@ class _MonthYearController extends GetxController {
   /// this method is called when the user taps on a year in the year picker
   void setYear(int year) {
     selectedYear(int.parse(year.toString()));
+    // if the selected year is less than the first enabled month, set the selected month to the first enabled month
+    if (isDisabledMonth(selectedMonth.value)) {
+      selectedMonth(firstEnabledMonth!);
+    }
     _assignDate();
   }
 
@@ -105,8 +109,8 @@ class _MonthYearController extends GetxController {
   void _generateYearList() {
     selectedMonth(selected.month);
     setYear(selected.year);
-    yearList = List.generate((selectedYear.value - firstYear!) + 1,
-        (index) => (selectedYear.value - index).toString());
+    yearList = List.generate((lastYear! - firstYear!) + 1,
+        (index) => (lastYear! - index).toString());
   }
 
   /// this method is called once when the controller is initialized to generate the list of months to be shown in the year picker
@@ -114,5 +118,16 @@ class _MonthYearController extends GetxController {
     for (int i = 1; i <= 12; i++) {
       monthsName.add(DateFormat.MMM().format(DateTime(2023, i, 1)));
     }
+  }
+
+  /// this method is called when the user taps on the month name in the month picker to check if the month is enabled or not
+  bool isDisabledMonth(int month) {
+    if (month < firstEnabledMonth! && selectedYear.value == firstYear) {
+      return true;
+    } else if (month > lastEnabledMonth! && selectedYear.value == lastYear) {
+      return true;
+    }
+
+    return false;
   }
 }
