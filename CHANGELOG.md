@@ -1,3 +1,8 @@
+## 0.1.1
+
+* Documentation updated
+* Added support to intl package 
+
 ## 0.1.0
 
 * Added support to disable months
