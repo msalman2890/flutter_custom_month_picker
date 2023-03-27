@@ -1,3 +1,8 @@
+## 0.1.2
+
+* Documentation updated
+* Bug Fixed for the firstEnabledMonth and lastEnabledMonth
+
 ## 0.1.1
 
 * Documentation updated

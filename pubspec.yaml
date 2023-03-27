@@ -1,6 +1,6 @@
 name: flutter_custom_month_picker
 description: This package is designed to make it easy to use a month and year picker in Flutter with a fancy design.
-version: 0.1.1
+version: 0.1.2
 homepage: https://github.com/msalman2890/flutter_custom_month_picker
 
 environment:
