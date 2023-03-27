@@ -54,6 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                       initialSelectedMonth: month,
                       initialSelectedYear: year,
+                      firstEnabledMonth: 3,
+                      lastEnabledMonth: 10,
                       firstYear: 2000,
                       lastYear: 2025,
                       selectButtonText: 'OK',

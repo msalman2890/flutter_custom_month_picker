@@ -31,36 +31,46 @@ class _MonthPickerState extends State<_MonthPicker> {
         physics: const NeverScrollableScrollPhysics(),
         crossAxisCount: 3,
         childAspectRatio: 2,
-        children: List.generate(
-            controller.monthsName.length,
-            (index) => GestureDetector(
-                  onTap: () {
-                    // set the selected month
-                    controller.setMonth(index + 1);
-                    controller.monthSelectionStarted(false);
-                  },
-                  child: Obx(
-                    () => Container(
-                      margin: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: controller.selectedMonth.value - 1 == index
-                              ? widget.highlightColor
-                              : Colors.transparent),
-                      child: Center(
-                        child: Text(
-                          controller.monthsName[index],
-                          style: TextStyle(
-                              color: controller.selectedMonth.value - 1 == index
-                                  ? Colors.white
-                                  : const Color(0xff474747),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ),
+        children: List.generate(controller.monthsName.length, (index) {
+          bool isDisabled = index + 1 < controller.firstEnabledMonth! ||
+              index + 1 > controller.lastEnabledMonth!;
+          return GestureDetector(
+            onTap: () {
+              // if the month is disabled, do nothing
+              if (isDisabled) {
+                return;
+              }
+              // set the selected month
+              controller.setMonth(index + 1);
+              controller.monthSelectionStarted(false);
+            },
+            child: Obx(
+              () => Container(
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: controller.selectedMonth.value - 1 == index
+                        ? widget.highlightColor
+                        : Colors.transparent),
+                child: Center(
+                  child: Text(
+                    controller.monthsName[index],
+                    style: TextStyle(
+                        color: isDisabled
+                            ? Colors.grey
+                            : controller.selectedMonth.value - 1 == index
+                                ? Colors.white
+                                : const Color(0xff474747),
+                        fontSize: 14,
+                        fontWeight: controller.selectedMonth.value - 1 == index
+                            ? FontWeight.w700
+                            : FontWeight.w500),
                   ),
-                )),
+                ),
+              ),
+            ),
+          );
+        }),
       ),
     );
   }

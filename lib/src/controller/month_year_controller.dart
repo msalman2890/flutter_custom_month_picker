@@ -2,11 +2,21 @@ part of '../views/custom_month_picker.dart';
 
 class _MonthYearController extends GetxController {
   _MonthYearController(
-      {this.firstYear, this.lastYear, this.initialMonth, this.initialYear});
+      {this.firstYear,
+      this.lastYear,
+      this.initialMonth,
+      this.initialYear,
+      this.firstEnabledMonth,
+      this.lastEnabledMonth});
 
   /// static method to get the controller instance from anywhere
   static _MonthYearController of(
-      {int? firstYear, int? lastYear, int? initialMonth, int? initialYear}) {
+      {int? firstYear,
+      int? lastYear,
+      int? initialMonth,
+      int? initialYear,
+      int? firstEnabledMonth,
+      int? lastEnabledMonth}) {
     try {
       // if the controller is already created, return it
       return Get.find();
@@ -17,6 +27,8 @@ class _MonthYearController extends GetxController {
         lastYear: lastYear ?? DateTime.now().year,
         initialMonth: initialMonth ?? DateTime.now().month,
         initialYear: initialYear ?? DateTime.now().year,
+        firstEnabledMonth: firstEnabledMonth ?? 1,
+        lastEnabledMonth: lastEnabledMonth ?? 12,
       ));
     }
   }
@@ -26,6 +38,12 @@ class _MonthYearController extends GetxController {
 
   /// the last year to be shown in the year picker
   final int? lastYear;
+
+  /// the first month to be enabled in the month picker
+  final int? firstEnabledMonth;
+
+  /// the last month to be enabled in the month picker
+  final int? lastEnabledMonth;
 
   /// the initial month to be selected
   final int? initialMonth;
@@ -50,24 +68,14 @@ class _MonthYearController extends GetxController {
   List<String> yearList = [];
 
   /// the list of months to be shown in the month picker
-  List<String> monthsName = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
-  ];
+  List<String> monthsName = [];
 
   @override
   void onInit() {
     super.onInit();
+    // generate the list of months to be shown in the month picker
+    _generateMonthList();
+
     // generate the list of years to be shown in the year picker
     _generateYearList();
 
@@ -99,5 +107,12 @@ class _MonthYearController extends GetxController {
     setYear(selected.year);
     yearList = List.generate((selectedYear.value - firstYear!) + 1,
         (index) => (selectedYear.value - index).toString());
+  }
+
+  /// this method is called once when the controller is initialized to generate the list of months to be shown in the year picker
+  void _generateMonthList() {
+    for (int i = 1; i <= 12; i++) {
+      monthsName.add(DateFormat.MMM().format(DateTime(2023, i, 1)));
+    }
   }
 }
