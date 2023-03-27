@@ -1,11 +1,16 @@
-## 0.0.1
+## 0.1.0
 
-* Initial release
+* Added support to disable months
+* Optimize the code
+
+## 0.0.3
+
+* Improved documentation
 
 ## 0.0.2
 
 * Format the code
 
-## 0.0.3
+## 0.0.1
 
-* Improved documentation
+* Initial release
