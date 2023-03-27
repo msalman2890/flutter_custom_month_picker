@@ -1,3 +1,7 @@
+## 0.1.3
+
+* Improved logics
+
 ## 0.1.2
 
 * Documentation updated
