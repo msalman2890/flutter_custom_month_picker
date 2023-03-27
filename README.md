@@ -18,6 +18,8 @@ void showMonthPicker(context, onSelected: (month, year) {
     initialSelectedYear: 2021,
     firstYear: 2000,
     lastYear: 2025,
+    firstEnabledMonth: 3,
+    lastEnabledMonth: 10,
     selectButtonText: 'OK',
     cancelButtonText: 'Cancel',
     highlightColor: Colors.purple,
@@ -29,20 +31,22 @@ void showMonthPicker(context, onSelected: (month, year) {
 
 ## Arguments
 
-| Argument                  | Type            | Description                                                                                                        |
-| ------------------------- | --------------- |--------------------------------------------------------------------------------------------------------------------|
-| context                   | BuildContext    | The context in which to show the dialog.                                                                           |
-| onSelected                | Function        | Called when a month is selected.                                                                                   |
-| initialSelectedMonth      | int             | The initial month to select. Defaults to the current month.                                                        |
-| initialSelectedYear       | int             | The initial year to select. Defaults to the current year.                                                          |
-| firstYear                 | int             | The first year that can be selected. Defaults to 1900.                                                             |
-| lastYear                  | int             | The last year that can be selected. Defaults to the current year.                                                  |
-| selectButtonText          | String          | The button text can be changed. Defaults to 'OK'.                                                                  |
-| cancelButtonText          | String          | The button text can be changed. Defaults to 'Cancel'.                                                              |
-| highlightColor            | Color           | The highlight color for the selected month and year. It will also reflected to the 'OK' button. Defaults to green. |
-| textColor                 | Color           | The color of the text. Defaults to black.                                                                          |
-| contentBackgroundColor   | Color           | The background color of the dialog content. Defaults to white.                                                     |
-| dialogBackgroundColor    | Color           | The background color of the dialog. Defaults to light grey.                                                        |
+| Argument               | Type            | Description                                                                                                        |
+|------------------------| --------------- |--------------------------------------------------------------------------------------------------------------------|
+| context                | BuildContext    | The context in which to show the dialog.                                                                           |
+| onSelected             | Function        | Called when a month is selected.                                                                                   |
+| initialSelectedMonth   | int             | The initial month to select. Defaults to the current month.                                                        |
+| initialSelectedYear    | int             | The initial year to select. Defaults to the current year.                                                          |
+| firstYear              | int             | The first year that can be selected. Defaults to 1900.                                                             |
+| lastYear               | int             | The last year that can be selected. Defaults to the current year.                                                  |
+| firstEnabledMonth      | int             | The first month that can be selected. Defaults to 1.                                                               |
+| lastEnabledMonth       | int             | The last month that can be selected. Defaults to the 12.                                                           |
+| selectButtonText       | String          | The button text can be changed. Defaults to 'OK'.                                                                  |
+| cancelButtonText       | String          | The button text can be changed. Defaults to 'Cancel'.                                                              |
+| highlightColor         | Color           | The highlight color for the selected month and year. It will also reflected to the 'OK' button. Defaults to green. |
+| textColor              | Color           | The color of the text. Defaults to black.                                                                          |
+| contentBackgroundColor | Color           | The background color of the dialog content. Defaults to white.                                                     |
+| dialogBackgroundColor  | Color           | The background color of the dialog. Defaults to light grey.                                                        |
 
 
 ## Screenshots
