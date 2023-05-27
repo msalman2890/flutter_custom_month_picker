@@ -22,6 +22,7 @@ void showMonthPicker(context,
     String selectButtonText = "OK",
     String cancelButtonText = "Cancel",
     Color highlightColor = Colors.green,
+    Size? size,
     Color? contentBackgroundColor = Colors.white,
     Color? dialogBackgroundColor,
     Color? textColor}) {
@@ -72,6 +73,7 @@ void showMonthPicker(context,
       builder: (BuildContext ctx) {
         return _CustomMonthPicker(
             onSelected: onSelected,
+            size: size,
             firstYear: firstYear,
             initialSelectedMonth: initialSelectedMonth,
             initialSelectedYear: initialSelectedYear,
@@ -91,6 +93,7 @@ class _CustomMonthPicker extends StatefulWidget {
   const _CustomMonthPicker({
     Key? key,
     required this.onSelected,
+    this.size,
     this.firstYear,
     this.initialSelectedMonth,
     this.initialSelectedYear,
@@ -118,7 +121,7 @@ class _CustomMonthPicker extends StatefulWidget {
   final Color? textColor;
   final Color? dialogBackgroundColor;
   final Color? contentBackgroundColor;
-
+  final Size? size;
   @override
   State<_CustomMonthPicker> createState() => _CustomMonthPickerState();
 }
@@ -150,7 +153,9 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(15.0))),
       content: SizedBox(
-        width: MediaQuery.of(context).size.width,
+        width: widget.size == null
+            ? MediaQuery.of(context).size.width
+            : widget.size!.width,
         child: Obx(
           () => Column(
             mainAxisSize: MainAxisSize.min,
@@ -254,7 +259,10 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
               borderRadius: BorderRadius.circular(10.0),
             ),
           ),
-          child: Text(widget.selectButtonText!),
+          child: Text(
+            widget.selectButtonText!,
+            style: const TextStyle(color: Colors.white),
+          ),
         ),
         const SizedBox(width: 15),
       ],
