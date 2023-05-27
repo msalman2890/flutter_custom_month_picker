@@ -57,6 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       firstEnabledMonth: 3,
                       lastEnabledMonth: 10,
                       firstYear: 2000,
+                      size: const Size(520, 250),
                       lastYear: 2025,
                       selectButtonText: 'OK',
                       cancelButtonText: 'Cancel',
