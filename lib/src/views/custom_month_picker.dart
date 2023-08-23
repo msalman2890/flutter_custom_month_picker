@@ -11,11 +11,10 @@ part 'year_picker.dart';
 part '../controller/month_year_controller.dart';
 
 /// public method to access the month picker dialog with the required parameters
-void showMonthPicker(context,
-    {required Function(int, int) onSelected,
+Future showMonthPicker(context,
+    {
     int? firstYear,
-    int? initialSelectedMonth,
-    int? initialSelectedYear,
+    DateTime? initial,
     int? lastYear,
     int? firstEnabledMonth,
     int? lastEnabledMonth,
@@ -41,40 +40,21 @@ void showMonthPicker(context,
     lastEnabledMonth ??= 12;
     firstYear ??= 1900;
     lastYear ??= DateTime.now().year;
-    initialSelectedMonth ??= DateTime.now().month;
-    initialSelectedYear ??= DateTime.now().year;
-
     // check if the first year is less than the last year
     assert(firstYear <= lastYear);
 
-    // check if the initial selected year is between the first and last year
-    assert(initialSelectedYear >= firstYear);
-    assert(initialSelectedYear <= lastYear);
-
-    if (initialSelectedYear == firstYear) {
-      // check if the initial selected month is greater than the first enabled month
-      assert(initialSelectedMonth >= firstEnabledMonth);
-    }
-
-    if (initialSelectedYear == lastYear) {
-      // check if the initial selected month is less than the last enabled month
-      assert(initialSelectedMonth <= lastEnabledMonth);
-    }
   } catch (e) {
     // if not valid, log the error and return
     log(e.toString(), name: "flutter_custom_month_picker");
-    return;
   }
 
   /// show the dialog
-  showDialog(
+  return showDialog(
       context: context,
       builder: (BuildContext ctx) {
         return _CustomMonthPicker(
-            onSelected: onSelected,
             firstYear: firstYear,
-            initialSelectedMonth: initialSelectedMonth,
-            initialSelectedYear: initialSelectedYear,
+            initial: initial,
             lastYear: lastYear,
             firstEnabledMonth: firstEnabledMonth,
             lastEnabledMonth: lastEnabledMonth,
@@ -90,10 +70,8 @@ void showMonthPicker(context,
 class _CustomMonthPicker extends StatefulWidget {
   const _CustomMonthPicker({
     Key? key,
-    required this.onSelected,
     this.firstYear,
-    this.initialSelectedMonth,
-    this.initialSelectedYear,
+    this.initial,
     this.lastYear,
     this.selectButtonText = "OK",
     this.cancelButtonText = "Cancel",
@@ -105,10 +83,8 @@ class _CustomMonthPicker extends StatefulWidget {
     this.lastEnabledMonth,
   }) : super(key: key);
 
-  final Function(int, int) onSelected;
   final int? firstYear;
-  final int? initialSelectedMonth;
-  final int? initialSelectedYear;
+  final DateTime? initial;
   final int? lastYear;
   final int? firstEnabledMonth;
   final int? lastEnabledMonth;
@@ -132,8 +108,8 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
     // initialize the controller with the required parameters
     controller = _MonthYearController.of(
       firstYear: widget.firstYear,
-      initialMonth: widget.initialSelectedMonth,
-      initialYear: widget.initialSelectedYear,
+      initialMonth: widget.initial?.month,
+      initialYear:widget.initial?.year,
       lastYear: widget.lastYear,
       firstEnabledMonth: widget.firstEnabledMonth,
       lastEnabledMonth: widget.lastEnabledMonth,
@@ -241,11 +217,7 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
                 style: TextStyle(color: widget.highlightColor))),
         const SizedBox(width: 10),
         ElevatedButton(
-          onPressed: () {
-            widget.onSelected(
-                controller.selected.month, controller.selected.year);
-            pop();
-          },
+          onPressed: pop,
           style: ElevatedButton.styleFrom(
             fixedSize: const Size(100, 40),
             padding: EdgeInsets.zero,
@@ -263,7 +235,7 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
 
   /// method to close the dialog and delete the controller
   void pop() {
-    Navigator.pop(context);
+    Navigator.pop(context, controller.selected);
     Get.delete<_MonthYearController>();
   }
 }
