@@ -217,7 +217,7 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
                 style: TextStyle(color: widget.highlightColor))),
         const SizedBox(width: 10),
         ElevatedButton(
-          onPressed: pop,
+          onPressed: () => pop(value: controller.selected),
           style: ElevatedButton.styleFrom(
             fixedSize: const Size(100, 40),
             padding: EdgeInsets.zero,
@@ -234,8 +234,8 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
   }
 
   /// method to close the dialog and delete the controller
-  void pop() {
-    Navigator.pop(context, controller.selected);
+  void pop({DateTime? value}) {
+    Navigator.pop(context, value);
     Get.delete<_MonthYearController>();
   }
 }
