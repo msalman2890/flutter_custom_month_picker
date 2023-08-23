@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_month_picker/flutter_custom_month_picker.dart';
 
@@ -29,7 +28,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int month = 3, year = 2023;
+  DateTime time = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -42,18 +41,9 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-                onPressed: () {
-                  showMonthPicker(context, onSelected: (month, year) {
-                    if (kDebugMode) {
-                      print('Selected month: $month, year: $year');
-                    }
-                    setState(() {
-                      this.month = month;
-                      this.year = year;
-                    });
-                  },
-                      initialSelectedMonth: month,
-                      initialSelectedYear: year,
+                onPressed: () async {
+                  final date = await showMonthPicker(context,
+                      initial: time,
                       firstEnabledMonth: 3,
                       lastEnabledMonth: 10,
                       firstYear: 2000,
@@ -64,9 +54,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       textColor: Colors.black,
                       contentBackgroundColor: Colors.white,
                       dialogBackgroundColor: Colors.grey[200]);
+                  if (date != null) {
+                    setState(() {
+                      time = date;
+                    });
+                  }
                 },
                 child: const Text('Show Month Picker')),
-            Text('Selected month: $month, year: $year')
+            Text('Selected month: ${time.month}, year: ${time.year}')
           ],
         ),
       ),
