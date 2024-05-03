@@ -25,7 +25,8 @@ void showMonthPicker(context,
     Size? size,
     Color? contentBackgroundColor = Colors.white,
     Color? dialogBackgroundColor,
-    Color? textColor}) {
+    Color? textColor,
+    Color? selectTextColor}) {
   // check if the parameters are valid
   try {
     // check if the first enabled month is valid
@@ -85,7 +86,8 @@ void showMonthPicker(context,
             highlightColor: highlightColor,
             contentBackgroundColor: contentBackgroundColor,
             dialogBackgroundColor: dialogBackgroundColor,
-            textColor: textColor);
+            textColor: textColor,
+            selectTextColor: selectTextColor);
       });
 }
 
@@ -106,6 +108,7 @@ class _CustomMonthPicker extends StatefulWidget {
     this.dialogBackgroundColor,
     this.firstEnabledMonth,
     this.lastEnabledMonth,
+    this.selectTextColor,
   }) : super(key: key);
 
   final Function(int, int) onSelected;
@@ -122,6 +125,7 @@ class _CustomMonthPicker extends StatefulWidget {
   final Color? dialogBackgroundColor;
   final Color? contentBackgroundColor;
   final Size? size;
+  final Color? selectTextColor;
   @override
   State<_CustomMonthPicker> createState() => _CustomMonthPickerState();
 }
@@ -261,7 +265,7 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
           ),
           child: Text(
             widget.selectButtonText!,
-            style: const TextStyle(color: Colors.white),
+            style: TextStyle(color: widget.selectTextColor ?? Colors.white),
           ),
         ),
         const SizedBox(width: 15),
