@@ -13,20 +13,20 @@ part '../controller/month_year_controller.dart';
 /// public method to access the month picker dialog with the required parameters
 void showMonthPicker(context,
     {required Function(int, int) onSelected,
-    int? firstYear,
-    int? initialSelectedMonth,
-    int? initialSelectedYear,
-    int? lastYear,
-    int? firstEnabledMonth,
-    int? lastEnabledMonth,
-    String selectButtonText = "OK",
-    String cancelButtonText = "Cancel",
-    Color highlightColor = Colors.green,
-    Size? size,
-    Color? contentBackgroundColor = Colors.white,
-    Color? dialogBackgroundColor,
-    Color? textColor,
-    Color? selectTextColor}) {
+      int? firstYear,
+      int? initialSelectedMonth,
+      int? initialSelectedYear,
+      int? lastYear,
+      int? firstEnabledMonth,
+      int? lastEnabledMonth,
+      String selectButtonText = "OK",
+      String cancelButtonText = "Cancel",
+      Color highlightColor = Colors.green,
+      Size? size,
+      Color? contentBackgroundColor = Colors.white,
+      Color? dialogBackgroundColor,
+      Color? textColor,
+      Color? selectTextColor}) {
   // check if the parameters are valid
   try {
     // check if the first enabled month is valid
@@ -157,11 +157,9 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(15.0))),
       content: SizedBox(
-        width: widget.size == null
-            ? MediaQuery.of(context).size.width
-            : widget.size!.width,
+        width: alertResponsiveSize(widget.size),
         child: Obx(
-          () => Column(
+              () => Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -277,5 +275,16 @@ class _CustomMonthPickerState extends State<_CustomMonthPicker> {
   void pop() {
     Navigator.pop(context);
     Get.delete<_MonthYearController>();
+  }
+
+  ///calculate the width size for all platforms
+  alertResponsiveSize(dynamic size){
+    if(size != null){
+      if(MediaQuery.of(context).size.width < 400 ){
+        return MediaQuery.of(context).size.width;
+      }
+      return 400;
+    }
+    return  widget.size!.width;
   }
 }
